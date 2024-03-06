@@ -3,14 +3,22 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import axios from 'axios';
 import { useEffect,  useState } from 'react';
-import CanvasJSReact from '@canvasjs/react-charts';
+import dynamic from 'next/dynamic';
+const CanvasJSChart = dynamic(
+  async () => {
+    const {
+      default: CanvasJS
+    } = await import('@canvasjs/react-charts');
+    return CanvasJS.CanvasJSChart;
+  },
+{ ssr: false }
+);
 
 const instance = axios.create(
   {baseURL: './api'}
 )
 
-const CanvasJS = CanvasJSReact.CanvasJS;
-const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
 
 export default function Home() {
   const [data, setData] = useState<string | null>(null)
@@ -38,7 +46,8 @@ export default function Home() {
     <main>
       <h1>Home</h1>
       <p>{data}</p>
-      {/*<CanvasJSChart options = {options} />*/}
+      {/*@ts-ignore*/}
+      <CanvasJSChart options = {options} />
     </main>
   );
 }
