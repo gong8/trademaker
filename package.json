@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "concurrently \"next dev\" \"flask --app api/index run\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -12,7 +12,9 @@
     "@canvasjs/charts": "^3.7.42",
     "@canvasjs/react-charts": "^1.0.2",
     "@types/canvasjs": "^1.9.11",
+    "axios": "^1.6.7",
     "canvasjs": "^1.8.3",
+    "concurrently": "^8.2.2",
     "next": "14.1.2",
     "react": "^18",
     "react-dom": "^18"
