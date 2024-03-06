@@ -1,26 +1,26 @@
 {
-  "name": "next-flask",
+  "name": "tradingbot",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "flask-dev": "FLASK_DEBUG=1 pip3 install -r requirements.txt && python3 -m flask --app api/index run -p 5328",
-    "next-dev": "next dev",
-    "dev": "concurrently \"pnpm run next-dev\" \"pnpm run flask-dev\"",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@types/node": "20.1.4",
-    "@types/react": "18.2.6",
-    "@types/react-dom": "18.2.4",
+    "@canvasjs/charts": "^3.7.42",
+    "@canvasjs/react-charts": "^1.0.2",
+    "@types/canvasjs": "^1.9.11",
     "canvasjs": "^1.8.3",
-    "concurrently": "^8.0.1",
-    "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
-    "next": "13.4.3",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "typescript": "5.0.4"
+    "next": "14.1.2",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   }
 }
