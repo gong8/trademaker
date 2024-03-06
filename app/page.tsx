@@ -38,7 +38,7 @@ export default function Home() {
     <main>
       <h1>Home</h1>
       <p>{data}</p>
-      <CanvasJSChart options = {options} />
+      {/*<CanvasJSChart options = {options} />*/}
     </main>
   );
 }
