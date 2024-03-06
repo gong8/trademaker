@@ -26,7 +26,7 @@ const instance = axios.create(
 const polygon = axios.create(
   {
     baseURL: 'https://api.polygon.io/v2/',
-    headers: {'Authorization': 'Bearer 11Rhj8iFjTgczZ_mkeJK5r5jz4XHlLcj'},
+    headers: {'Authorization': process.env.APIKEY},
   }
 )
 
