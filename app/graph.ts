@@ -3,7 +3,10 @@ export function getNewOptions(data: any) {
   if (data) {
     for (const dict of data.results) {
       // [Open, High, Low, Close]
-      const [open, high, low, close] = [dict.o, dict.h, dict.l, dict.c]
+      const {
+        o: open, c: close,
+        h: high, l: low,
+      } = dict;
       const time = new Date(dict.t);
       const point = {x: time, y: [open, high, low, close]};
       newDataPoints.push(point);

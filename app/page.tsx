@@ -1,35 +1,26 @@
 'use client'
-import Image from "next/image";
+
 import styles from "./page.module.css";
 import axios from 'axios';
-import { useEffect,  useState } from 'react';
 import dynamic from 'next/dynamic';
-require('dotenv').config();
 import { getNewOptions } from './graph'
-import { getAPIKEY } from './getEnv'
+import { useEffect,  useState } from 'react';
 
 const CanvasJSChart = dynamic(
   async () => {
     const {
-
       default: CanvasJS
     } = await import('@canvasjs/react-charts');
     return CanvasJS.CanvasJSChart;
   },
-{ ssr: false }
+  { ssr: false }
 );
 
-const denyPolygon =  false;
+const api = axios.create({
+  baseURL: './api',
+});
 
-const instance = axios.create(
-  {
-    baseURL: './api',
-  },
-)
-
-
-
-
+const denyPolygon = false;
 
 export default function Home() {
   const [data, setData] = useState<string | null>(null);
@@ -37,37 +28,33 @@ export default function Home() {
   const [graphData, setGraphData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
 
-  const polygon = axios.create(
-    {
-      baseURL: 'https://api.polygon.io/v2/',
-      headers: {'Authorization': `Bearer ${getAPIKEY()}`},
-    }
-  )
-
   useEffect(() => {
     setLoading(true);
     if (denyPolygon) {
       return;
-
     }
-    const indicesTicker = "AAPL";
-    const multiplier = 10;
-    const timespan = "minute";
+    const ticker = "AAPL";
+    const multiplier = 1;
+    const timespan = "day";
     const from = "2023-01-03";
-    const to = "2023-01-03";
-
-    polygon.get(`aggs/ticker/${indicesTicker}/range/${multiplier}/${timespan}/${from}/${to}`).then((res) => {
+    const to = "2023-02-02";
+    api.get("/get_data", {
+      params: {
+        ticker,
+        multiplier,
+        timespan,
+        from,
+        to,
+      }
+    }).then(res => {
+      console.info(res.data);
       setGraphData(res.data);
     }).catch((err) => {
-      console.log("error", err);
+      console.error(err);
     }).finally(() => {
       setLoading(false);
-
-
-    })
-
+    });
   }, [])
-
 
   useEffect(() => {
     updateGraph(graphData);
@@ -89,7 +76,6 @@ export default function Home() {
         <p className={styles.pythonTest}>{data}</p>
         {/*@ts-ignore*/}
         <CanvasJSChart options = {options} />
-
       </div>
     </main>
   );
