@@ -10,3 +10,5 @@ def parse_date(date_str: str) -> datetime:
   day = int(parts[2])  
   return datetime(year, month, day)
   
+def str_date(date: datetime) -> str:
+  return f"{date.year}-{date.month}-{date.day}"
