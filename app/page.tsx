@@ -1,20 +1,10 @@
 'use client'
 
 import styles from "./page.module.css";
-import axios from 'axios';
-import dynamic from 'next/dynamic';
-import { getNewOptions } from './graph'
-import { useEffect,  useState } from 'react';
-
-const CanvasJSChart = dynamic(
-  async () => {
-    const {
-      default: CanvasJS
-    } = await import('@canvasjs/react-charts');
-    return CanvasJS.CanvasJSChart;
-  },
-  { ssr: false }
-);
+import axios from "axios";
+import { useEffect,  useState } from "react";
+import { ChartComponent, GraphData } from "../components";
+import { RawData, parseData } from "../utils";
 
 const api = axios.create({
   baseURL: './api',
@@ -23,9 +13,7 @@ const api = axios.create({
 const denyPolygon = false;
 
 export default function Home() {
-  const [data, setData] = useState<string | null>(null);
-  const [options, setOptions] = useState<any>(null);
-  const [graphData, setGraphData] = useState<any>(null);
+  const [graphData, setGraphData] = useState<GraphData>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -35,7 +23,7 @@ export default function Home() {
     }
     const ticker = "AAPL";
     const multiplier = 1;
-    const timespan = "day";
+    const timespan = "hour";
     const from = "2023-01-03";
     const to = "2023-02-02";
     api.get("/get_data", {
@@ -47,23 +35,14 @@ export default function Home() {
         to,
       }
     }).then(res => {
-      console.info(res.data);
-      setGraphData(res.data);
+      const json = res.data as RawData;
+      setGraphData(parseData(json));
     }).catch((err) => {
       console.error(err);
     }).finally(() => {
       setLoading(false);
     });
-  }, [])
-
-  useEffect(() => {
-    updateGraph(graphData);
-  },[graphData])
-
-  function updateGraph(data: any) {
-    const newOptions = getNewOptions(data);
-    setOptions(newOptions);
-  }
+  }, []);
 
   return (
     <main>
@@ -72,10 +51,7 @@ export default function Home() {
           <h1 className={styles.title}>trademaker</h1>
           <div className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}></div>
         </div>
-
-        <p className={styles.pythonTest}>{data}</p>
-        {/*@ts-ignore*/}
-        <CanvasJSChart options = {options} />
+        <ChartComponent data={graphData} style={{width: '75%'}} />        
       </div>
     </main>
   );
