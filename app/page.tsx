@@ -4,10 +4,14 @@ import styles from "./page.module.css";
 import axios from 'axios';
 import { useEffect,  useState } from 'react';
 import dynamic from 'next/dynamic';
+require('dotenv').config();
+import { getNewOptions } from './graph'
+import { getAPIKEY } from './getEnv'
 
 const CanvasJSChart = dynamic(
   async () => {
     const {
+
       default: CanvasJS
     } = await import('@canvasjs/react-charts');
     return CanvasJS.CanvasJSChart;
@@ -23,12 +27,7 @@ const instance = axios.create(
   },
 )
 
-const polygon = axios.create(
-  {
-    baseURL: 'https://api.polygon.io/v2/',
-    headers: {'Authorization': `Bearer ${process.env.APIKEY}`},
-  }
-)
+
 
 
 
@@ -37,6 +36,13 @@ export default function Home() {
   const [options, setOptions] = useState<any>(null);
   const [graphData, setGraphData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
+
+  const polygon = axios.create(
+    {
+      baseURL: 'https://api.polygon.io/v2/',
+      headers: {'Authorization': `Bearer ${getAPIKEY()}`},
+    }
+  )
 
   useEffect(() => {
     setLoading(true);
@@ -68,29 +74,8 @@ export default function Home() {
   },[graphData])
 
   function updateGraph(data: any) {
-    let newDataPoints = [];
-    if (data) {
-      for (const dict of data.results) {
-        // [Open, High, Low, Close]
-        const [open, high, low, close] = [dict.o, dict.h, dict.l, dict.c]
-        const time = new Date(dict.t);
-        const point = {x: time, y: [open, high, low, close]};
-        newDataPoints.push(point);
-      }
-    }
-    setOptions({
-      theme: "dark2",
-      backgroundColor: "#000000",
-      title: {
-        text: ""
-      },
-      data: [{
-        type: "candlestick",
-        xValueFormatString: "MMM YYYY",
-        yValueFormatString: "#,##0.00",
-        dataPoints: newDataPoints,
-      }]
-    });
+    const newOptions = getNewOptions(data);
+    setOptions(newOptions);
   }
 
   return (
@@ -101,7 +86,7 @@ export default function Home() {
           <div className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}></div>
         </div>
 
-        <p>{data}</p>
+        <p className={styles.pythonTest}>{data}</p>
         {/*@ts-ignore*/}
         <CanvasJSChart options = {options} />
 
