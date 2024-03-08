@@ -1,5 +1,5 @@
 from typing import List
-from numpy import float16, ndarray
+from numpy import float16, array, concatenate
 import numpy.typing as npt
 
 """
@@ -44,10 +44,10 @@ def simulate(
     raise RuntimeError("EMA_width must be more than candlesticks_per_rule")
 
   # get initial values
-  smooth: float = 2 / (1 + EMA_width)
-  rule_length: int = len(rulebook) / rule_count
-  start: float = invested_units * candlesticks[0] + available_money
-  EMA: float = 0
+  smooth: float16 = float16(2 / (1 + EMA_width))
+  rule_length: int = len(rulebook) // rule_count
+  start: float16 = float(invested_units * candlesticks[0] + available_money)
+  EMA: float16 = float16(0)
   
   # initialise EMA
   for i in range(EMA_width):
@@ -55,15 +55,18 @@ def simulate(
   EMA /= EMA_width
   
   # simulate from EMA_width onwards
-  for i in range(EMA_width, len(candlesticks)):
-    trade_proportion: float = 0 # -1 <= trade_proportion <= 1
-    invested_money: float = invested_units * candlesticks[i*4]
-    invested_proportion: float = invested_money / (invested_money + available_money)
+  for i in range(EMA_width, len(candlesticks)//4):
+    trade_proportion: float16 = float16(0) # -1 <= trade_proportion <= 1
+    invested_money: float16 = float16(invested_units * candlesticks[i*4])
+    invested_proportion: float16 = float16(invested_money / (invested_money + available_money))
     for j in range(rule_count): # j-th rule in rulebook
       rule_satisfied: bool = True
       left_candle: int = (i - candlesticks_per_rule + 1) * 4
       right_candle: int = left_candle + 4 * candlesticks_per_rule
-      values: npt.NDArray[float16] = candlesticks[left_candle:right_candle] + [EMA, 1, invested_proportion]
+      values: npt.NDArray[float16] = concatenate([
+        candlesticks[left_candle:right_candle], 
+        array([EMA, float16(1), invested_proportion])
+      ])
       for k in range(candlesticks_per_rule): # k-th candlestick from left
         for l in range(4): # l-th attribute of k-th candlestick
           left_index: int = j * rule_length + 2 * (4 * candlesticks_per_rule + 3) * (4 * k + l)
@@ -71,7 +74,7 @@ def simulate(
           right_index: int = middle_index + 4 * candlesticks_per_rule + 3
           lower_coeff: npt.NDArray[float16] = rulebook[left_index:middle_index]
           upper_coeff: npt.NDArray[float16] = rulebook[middle_index:right_index]
-          attribute: float = candlesticks[right_candle-1+l]
+          attribute: float = candlesticks[right_candle-4+l]
           if attribute < lower_coeff.dot(values) or attribute > upper_coeff.dot(values):
             rule_satisfied = False
       if rule_satisfied:
@@ -93,4 +96,21 @@ def simulate(
   end: float = invested_units * candlesticks[len(candlesticks)-4+1] + available_money
   return end - start
 
-# very good boris
+if __name__ == "__main__":
+  # tester code
+  # TODO update with rulebook generator, try simple rules
+  candlesticks_per_rule = 5
+  size = 2 * (8 * candlesticks_per_rule + 1) * (4 * candlesticks_per_rule + 3) + 2
+  rulebook = [float16(1)] * ( size )
+  candlesticks = [float16(1)] * ( 4 * 1000 )
+  print(
+    simulate(
+      array(candlesticks), 
+      array(rulebook), 
+      1000, 
+      1000, 
+      candlesticks_per_rule, 
+      2, 
+      10
+    )
+  )
