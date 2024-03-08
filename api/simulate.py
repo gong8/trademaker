@@ -6,13 +6,15 @@ import numpy.typing as npt
 n : number of candlesticks, (n = 5)
 k : proportion to buy/sell (-sell, +buy), -1 <= k <= 1
 v : a vector of size ?, 0 <= i < n
-==> v[i*2] = the lower boundary of the open of the i-th candlestick from the left, of size 4i+3
-==> v[i*2+1] = the upper boundary of the open of the i-th candlestick from the left, of size 4i+3
-==> v[i*2+2] = the lower boundary of the close of the i-th candlestick from the left, of size 4i+3
-==> v[i*2+3] = the upper boundary of the close of the i-th candlestick from the left, of size 4i+3
+==> v[i*2] = the lower boundary of the open of the i-th candlestick from the left
+==> v[i*2+1] = the upper boundary of the open of the i-th candlestick from the left
+==> v[i*2+2] = the lower boundary of the close of the i-th candlestick from the left
+==> v[i*2+3] = the upper boundary of the close of the i-th candlestick from the left
 ==> v[i*2+...] = the ...
-==> v[i*2+7] = the upper boundary of the low of the i-th candlestick from the left, of size 4i+3
-==> v[n*8] = the stop loss, of size 4n+3
+==> v[i*2+7] = the upper boundary of the low of the i-th candlestick from the left
+==> v[n*8] = the stop loss
+all are of size 4n+3
+total size: (8n+1)*(4n+3)+1
 
 each parameter-vector has:
 open1, close1, high1, low1, ..., openX, closeX, highX, lowX, EMA, C, P
@@ -59,16 +61,14 @@ def simulate(
     invested_proportion: float = invested_money / (invested_money + available_money)
     for j in range(rule_count): # j-th rule in rulebook
       rule_satisfied: bool = True
+      left_candle: int = (i - candlesticks_per_rule + 1) * 4
+      right_candle: int = left_candle + 4 * candlesticks_per_rule
+      values: npt.NDArray[float16] = candlesticks[left_candle:right_candle] + [EMA, 1, invested_proportion]
       for k in range(candlesticks_per_rule): # k-th candlestick from left
-        left_candle: int = (i-candlesticks_per_rule+1)*4
-        right_candle: int = left_candle + k*4 + 4
-        values: npt.NDArray[float16] = candlesticks[left_candle:right_candle] + [EMA, 1, invested_proportion]
         for l in range(4): # l-th attribute of k-th candlestick
-          # [left_index, middle_index) -> vector of lower boundary rule
-          # [middle_index, right_index) -> vector of upper boundary rule
-          left_index: int = j*rule_length + 16*k**2 + 8*k + 4*l**2 + 2*l
-          middle_index: int = left_index + 4*k + 3
-          right_index: int = middle_index + 4*k + 3
+          left_index: int = j * rule_length + 2 * (4 * candlesticks_per_rule + 3) * (4 * k + l)
+          middle_index: int = left_index + 4 * candlesticks_per_rule + 3
+          right_index: int = middle_index + 4 * candlesticks_per_rule + 3
           lower_coeff: npt.NDArray[float16] = rulebook[left_index:middle_index]
           upper_coeff: npt.NDArray[float16] = rulebook[middle_index:right_index]
           attribute: float = candlesticks[right_candle-1+l]
