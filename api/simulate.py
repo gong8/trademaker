@@ -27,6 +27,7 @@ rulebook = NS = ?
 simulate on [[open,close,high,low]]
 """
 
+
 def simulate(
   candlesticks: npt.NDArray[float16], 
   rulebook: npt.NDArray[float16], 
@@ -91,3 +92,5 @@ def simulate(
   # calculate profit
   end: float = invested_units * candlesticks[len(candlesticks)-4+1] + available_money
   return end - start
+
+# very good boris
