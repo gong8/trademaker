@@ -1,4 +1,4 @@
-import { GraphData } from "@/components";
+import { EmaData, GraphData } from "@/components";
 import { UTCTimestamp } from "lightweight-charts";
 
 export interface RawData {
@@ -23,4 +23,22 @@ export function parseData(data: RawData): GraphData {
     low: l, 
     close: c 
   }));
+}
+
+export function getEma(data: GraphData, width: number): EmaData {
+  const smooth = 2 / (width + 1);
+  let ema = 0;
+  return data.map((val, i) => {
+    if (i < width) {
+      ema *= i;
+      ema += val.close;
+      ema /= (i + 1);
+    } else {
+      ema = val.close * smooth + ema * (1 - smooth);
+    }
+    return {
+      time: val.time,
+      value: ema
+    };
+  });
 }

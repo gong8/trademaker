@@ -1,10 +1,12 @@
-import { createChart, ColorType, Time, WhitespaceData, CandlestickData } from 'lightweight-charts';
+import { createChart, ColorType, Time, WhitespaceData, CandlestickData, LineData } from 'lightweight-charts';
 import React, { CSSProperties, FC, useEffect, useRef } from 'react';
 
-export type GraphData = (CandlestickData<Time> | WhitespaceData<Time>)[];
+export type GraphData = CandlestickData<Time>[];
+export type EmaData = LineData<Time>[];
 
 export interface GraphProps {
   data: GraphData;
+	ema?: EmaData;
   colors?: {
     backgroundColor?: string;
     lineColor?: string;
@@ -17,6 +19,7 @@ export interface GraphProps {
 
 export const ChartComponent: FC<GraphProps> = ({
   data,
+	ema,
   colors: {
     backgroundColor = 'black',
 		textColor = 'white'
@@ -48,6 +51,12 @@ export const ChartComponent: FC<GraphProps> = ({
 
 			const newSeries = chart.addCandlestickSeries({ });
 			newSeries.setData(data);
+			
+			if (ema) {
+				const emaSeries = chart.addLineSeries({ });
+				emaSeries.setData(ema);
+			}
+			
 			addEventListener('resize', handleResize);
 
 			return () => {

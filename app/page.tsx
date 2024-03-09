@@ -3,8 +3,8 @@
 import styles from "./page.module.css";
 import axios from "axios";
 import { useEffect,  useState } from "react";
-import { ChartComponent, GraphData } from "../components";
-import { RawData, parseData } from "../utils";
+import { ChartComponent, EmaData, GraphData } from "../components";
+import { RawData, getEma, parseData } from "../utils";
 
 const api = axios.create({
   baseURL: './api',
@@ -14,6 +14,7 @@ const denyPolygon = false;
 
 export default function Home() {
   const [graphData, setGraphData] = useState<GraphData>([]);
+  const [emaData, setEmaData] = useState<EmaData>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -36,7 +37,10 @@ export default function Home() {
       }
     }).then(res => {
       const json = res.data as RawData;
-      setGraphData(parseData(json));
+      const data = parseData(json);
+      const ema = getEma(data, 10);
+      setGraphData(data);
+      setEmaData(ema);
     }).catch((err) => {
       console.error(err);
     }).finally(() => {
@@ -51,7 +55,7 @@ export default function Home() {
           <h1 className={styles.title}>trademaker</h1>
           <div className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}></div>
         </div>
-        <ChartComponent data={graphData} style={{width: '75%'}} />        
+        <ChartComponent data={graphData} ema={emaData} style={{width: '75%'}} />        
       </div>
     </main>
   );
