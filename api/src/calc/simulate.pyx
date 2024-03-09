@@ -1,12 +1,11 @@
 import cython
 
 # https://cython.readthedocs.io/en/latest/src/userguide/memoryviews.html#syntax
-# precondition: EMA_width >= candlesticks_per_rule
-@cython.boundscheck(False)
-@cython.wraparound(False)
-@cython.initializedcheck(False)
-@cython.cdivision(True)
-def simulate_fast(
+# @cython.boundscheck(False)
+# @cython.wraparound(False)
+# @cython.initializedcheck(False)
+# @cython.cdivision(True)
+def simulate(
   float[:] candlesticks,
   float[:] rulebook, 
   float invested_units, 
@@ -16,9 +15,10 @@ def simulate_fast(
   int EMA_width
 ):
   cdef float smooth, start, EMA, trade_proportion, invested_money, invested_proportion, attribute, lower_bound, upper_bound, end
-  cdef int rule_length, i, j, k, l, left_candle, right_candle, left_index, right_index, rule_satisfied
+  cdef int rule_length, i, j, k, l, m, left_candle, left_index, right_index, rule_satisfied
 
-  if EMA_width >= candlesticks_per_rule:
+  # precondition: EMA_width >= candlesticks_per_rule
+  if EMA_width < candlesticks_per_rule:
     raise ValueError("Error")
 
   # get initial values
@@ -37,32 +37,31 @@ def simulate_fast(
     trade_proportion = 0 # -1 <= trade_proportion <= 1
     invested_money = invested_units * candlesticks[i*4]
     invested_proportion = invested_money / (invested_money + available_money)
+    left_candle = (i - candlesticks_per_rule + 1) * 4
     for j in range(rule_count): # j-th rule in rulebook
       rule_satisfied = True
-      left_candle = (i - candlesticks_per_rule + 1) * 4
-      right_candle = left_candle + 4 * candlesticks_per_rule
       for k in range(candlesticks_per_rule): # k-th candlestick from left
         for l in range(4): # l-th attribute of k-th candlestick
-          left_index = j * rule_length + 2 * (4 * candlesticks_per_rule + 3) * (4 * k + l)
+          left_index = j * rule_length + (4 * candlesticks_per_rule + 3) * (8 * k + 2 * l)
           right_index = left_index + 4 * candlesticks_per_rule + 3
           
           # dot product cuz numpy can't do it
           lower_bound = 0
-          for i in range(4 * candlesticks_per_rule):
-            lower_bound += rulebook[left_index + i] * candlesticks[left_candle + i]
+          for m in range(4 * candlesticks_per_rule):
+            lower_bound += rulebook[left_index + m] * candlesticks[left_candle + m]
           lower_bound += rulebook[left_index + 4 * candlesticks_per_rule] * EMA
           lower_bound += rulebook[left_index + 4 * candlesticks_per_rule + 1]
           lower_bound += rulebook[left_index + 4 * candlesticks_per_rule + 2] * invested_proportion
           
           # dot product cuz numpy can't do it
           upper_bound = 0
-          for i in range(4 * candlesticks_per_rule):
-            upper_bound += rulebook[right_index + i] * candlesticks[left_candle + i]
+          for m in range(4 * candlesticks_per_rule):
+            upper_bound += rulebook[right_index + m] * candlesticks[left_candle + m]
           upper_bound += rulebook[right_index + 4 * candlesticks_per_rule] * EMA
           upper_bound += rulebook[right_index + 4 * candlesticks_per_rule + 1]
           upper_bound += rulebook[right_index + 4 * candlesticks_per_rule + 2] * invested_proportion
           
-          attribute = candlesticks[right_candle - 4 + l]
+          attribute = candlesticks[left_candle + 4 * k + l]
           if attribute < lower_bound or attribute > upper_bound:
             rule_satisfied = False
       if rule_satisfied:
@@ -70,7 +69,7 @@ def simulate_fast(
     if trade_proportion > 0:
       # buy stock
       trade_proportion = min(trade_proportion, 1.0)
-      invested_units += trade_proportion * available_money / candlesticks[i * 4 + 1]
+      invested_units += trade_proportion * available_money / candlesticks[i * 4]
       available_money *= 1 - trade_proportion
     else:
       # sell stock

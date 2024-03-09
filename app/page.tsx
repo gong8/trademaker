@@ -23,7 +23,7 @@ export default function Home() {
     }
     const ticker = "AAPL";
     const multiplier = 1;
-    const timespan = "hour";
+    const timespan = "minute";
     const from = "2023-01-03";
     const to = "2023-02-02";
     api.get("/get_data", {
