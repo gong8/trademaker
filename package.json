@@ -3,9 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"flask --app api/index run\"",
-    "build": "next build",
-    "start": "next start",
+    "dev-api": "npm run build-api && cd ./api/src && flask --app index.py run && cd ../../",
+    "dev-next": "next dev",
+    "dev": "concurrently \"npm run dev-api\" \"npm run dev-next\"",
+
+    "build-api": "cd ./api && pip install -r requirements.txt && cd ./src && python setup.py build_ext --inplace && cd ../../",
+    "build-next": "next build",
+    "build": "npm run build-api && npm run build-next",
+
+    "start-api": "cd ./api/src && flask --app index.py run && cd ../../",
+    "start-next": "next start",
+    "start": "concurrently \"npm run start-api\" \"npm run start-next\"",
+    
     "lint": "next lint"
   },
   "dependencies": {
