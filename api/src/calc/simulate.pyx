@@ -16,7 +16,7 @@ def simulate_fast(
   int EMA_width
 ):
   cdef float smooth, start, EMA, trade_proportion, invested_money, invested_proportion, attribute, lower_bound, upper_bound, end
-  cdef int rule_length, i, j, k, l, left_candle, right_candle, left_index, middle_index, right_index, rule_satisfied
+  cdef int rule_length, i, j, k, l, left_candle, right_candle, left_index, right_index, rule_satisfied
 
   if EMA_width >= candlesticks_per_rule:
     raise ValueError("Error")
@@ -44,8 +44,7 @@ def simulate_fast(
       for k in range(candlesticks_per_rule): # k-th candlestick from left
         for l in range(4): # l-th attribute of k-th candlestick
           left_index = j * rule_length + 2 * (4 * candlesticks_per_rule + 3) * (4 * k + l)
-          middle_index = left_index + 4 * candlesticks_per_rule + 3
-          right_index = middle_index + 4 * candlesticks_per_rule + 3
+          right_index = left_index + 4 * candlesticks_per_rule + 3
           
           # dot product cuz numpy can't do it
           lower_bound = 0
