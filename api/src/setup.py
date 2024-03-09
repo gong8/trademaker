@@ -6,8 +6,8 @@ ext_modules = [
   Extension(
     "calc",
     ["calc/simulate.pyx"],
-    extra_compile_args=["/Ox", "/openmp"], 
-    extra_link_args=["/openmp"],
+    extra_compile_args=["-O2"], 
+    extra_link_args=[],
   )
 ]
 

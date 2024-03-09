@@ -16,6 +16,9 @@ export default function Home() {
   const [graphData, setGraphData] = useState<GraphData>([]);
   const [emaData, setEmaData] = useState<EmaData>([]);
   const [loading, setLoading] = useState(false);
+  const [money, setMoney] = useState(0);
+  const [stock, setStock] = useState(0);
+  const [wallet, setWallet] = useState(0);
 
   useEffect(() => {
     setLoading(true);
@@ -55,7 +58,35 @@ export default function Home() {
           <h1 className={styles.title}>trademaker</h1>
           <div className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}></div>
         </div>
-        <ChartComponent data={graphData} ema={emaData} style={{width: '75%'}} />        
+        <ChartComponent data={graphData} style={{width: '75%'}} />
+        <div className={styles.interactionContainer}>
+          <form className={styles.inputContainer}>
+            <label htmlFor="initialStock">
+              £
+            <input type="number" placeholder="Initial money in stock" />
+            </label>
+            
+            <br/>
+            <label htmlFor="initialWallet">
+              £
+              <input type="number" placeholder="Initial money in wallet" />
+            </label>
+            
+            <br/>
+            <input type="submit" value="Simulate"/>
+          </form>
+          <div className={styles.output}>
+            <p>
+              Number of stocks: {stock}
+            </p>
+            <p>
+              Money in wallet: £{wallet}
+            </p>
+            <p>
+              Total money: £{money}
+            </p>
+          </div>
+        </div>  
       </div>
     </main>
   );
