@@ -58,6 +58,7 @@ if __name__ == "__main__":
   )
   str_data = get_data("AAPL", 1, "minute", parse_date("2023-01-03"), parse_date("2023-02-02"))
   candlesticks = parse_candlesticks(str_data)
+  # we require starting stocks, starting money
   result = simulate(
     candlesticks,
     rulebook,

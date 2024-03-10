@@ -115,10 +115,42 @@
     align-items: center;
     justify-content: center;
     margin-top: 2em;
-
     font-family: 'Inter' !important;
 }
 
 .output {
   margin-bottom: 1em;
+}
+
+.tickerInput {
+  border: 1px solid white;
+    padding: 1em;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+    font-family: 'Inter' !important;
+}
+
+.tickerInput input, .tickerInput select, .tickerInput button {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  font-family: 'Inter' !important;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+
+.mainBody {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 2em;
+  font-family: 'Inter' !important;
 }
