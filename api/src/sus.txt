@@ -1,0 +1,1574 @@
+const string = `
+rulebook = [
+  // rule 1
+  [
+    // stick 1
+    [
+      // LB for stick 1
+      [
+        // LB for stick 1 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 1
+      [
+        // UB for stick 1 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 2
+    [
+      // LB for stick 2
+      [
+        // LB for stick 2 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 2
+      [
+        // UB for stick 2 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 3
+    [
+      // LB for stick 3
+      [
+        // LB for stick 3 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 3
+      [
+        // UB for stick 3 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 4
+    [
+      // LB for stick 4
+      [
+        // LB for stick 4 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 4
+      [
+        // UB for stick 4 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 5
+    [
+      // LB for stick 5
+      [
+        // LB for stick 5 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 5
+      [
+        // UB for stick 5 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stoploss
+    [
+      // 
+      [
+      
+      ]
+    ],
+    // tradeprop (-1 <= x <= 1)
+    NUMBER
+
+  ],
+
+
+
+  // rule 2
+  [
+    // stick 1
+    [
+      // LB for stick 1
+      [
+        // LB for stick 1 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 1 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 1
+      [
+        // UB for stick 1 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 1 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 2
+    [
+      // LB for stick 2
+      [
+        // LB for stick 2 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 2 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 2
+      [
+        // UB for stick 2 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 2 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 3
+    [
+      // LB for stick 3
+      [
+        // LB for stick 3 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 3 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 3
+      [
+        // UB for stick 3 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 3 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 4
+    [
+      // LB for stick 4
+      [
+        // LB for stick 4 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 4 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 4
+      [
+        // UB for stick 4 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 4 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stick 5
+    [
+      // LB for stick 5
+      [
+        // LB for stick 5 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - close
+        [
+          // sticks
+          [
+            // stick1prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // LB for stick 5 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ],
+      // UB for stick 5
+      [
+        // UB for stick 5 - open
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - close
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - high
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ],
+        // UB for stick 5 - low
+        [
+          // sticks
+          [
+            // stick1 prop
+            [o, c, h, l],
+            // stick2 prop
+            [o, c, h, l],
+            // stick3 prop
+            [o, c, h, l],
+            // stick4 prop
+            [o, c, h, l],
+            // stick5 prop
+            [o, c, h, l]
+          ],
+          // other values
+          EMA, CONST, PROPINSTOCK
+        ]
+      ]
+    ],
+
+    // stoploss
+    [
+      // 
+      [
+      
+      ]
+    ],
+    // tradeprop (-1 <= x <= 1)
+    NUMBER
+
+  ],
+  
+]
+`
