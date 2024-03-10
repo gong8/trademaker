@@ -1,10 +1,10 @@
 import cython
 
 # https://cython.readthedocs.io/en/latest/src/userguide/memoryviews.html#syntax
-# @cython.boundscheck(False)
-# @cython.wraparound(False)
-# @cython.initializedcheck(False)
-# @cython.cdivision(True)
+@cython.boundscheck(False)
+@cython.wraparound(False)
+@cython.initializedcheck(False)
+@cython.cdivision(True)
 def simulate(
   float[:] candlesticks,
   float[:] rulebook, 
