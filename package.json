@@ -3,15 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev-api": "npm run build-api && cd ./api/src && flask --app index.py run && cd ../../",
+    "dev-api": "npm run build-api && flask --app ./api/index.py run",
     "dev-next": "next dev",
     "dev": "concurrently \"npm run dev-api\" \"npm run dev-next\"",
 
-    "build-api": "cd ./api && pip install -r requirements.txt && cd ./src && python setup.py build_ext --inplace && cd ../../",
+    "build-api": "python3 -m pip install -r requirements.txt && cd ./api && python3 setup.py build_ext --inplace && cd ../",
     "build-next": "next build",
     "build": "npm run build-api && npm run build-next",
 
-    "start-api": "cd ./api/src && flask --app index.py run && cd ../../",
+    "start-api": "flask --app ./api/index.py run",
     "start-next": "next start",
     "start": "concurrently \"npm run start-api\" \"npm run start-next\"",
     
