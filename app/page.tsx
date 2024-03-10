@@ -156,8 +156,8 @@ export default function Home() {
             <div className={styles.output}>
               {/* <p>Number of stocks: {stock}</p> */}
               {/* <p>Money in wallet: £{wallet}</p> */}
-              <p>Money difference: £{money}</p>
-              <p>Total money: £{initialStock + initialWallet + money}</p>
+              <p>Money difference: {money >= 0 ? "£" + money.toFixed(2) : "-£" + (Math.abs(money)).toFixed(2)}</p>
+              <p>Total money: £{(initialStock + initialWallet + money).toFixed(2)}</p>
             </div>
           </div>
         </div>

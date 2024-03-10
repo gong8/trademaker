@@ -144,6 +144,22 @@
   margin-bottom: 0.5em;
 }
 
+.tickerInput button {
+  padding: 10px 20px;
+  border: none;
+  background-color: white; /* Green */
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 16px;
+  margin-bottom: 1em;
+  font-family: 'Inter' !important;
+}
+
+.tickerInput button:hover {
+  filter: brightness(0.8);
+
+}
 
 .mainBody {
   display: flex;
