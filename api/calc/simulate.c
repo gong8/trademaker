@@ -4,11 +4,7 @@
 {
     "distutils": {
         "extra_compile_args": [
-            "/Ox",
-            "/openmp"
-        ],
-        "extra_link_args": [
-            "/openmp"
+            "-O2"
         ],
         "name": "calc",
         "sources": [
@@ -1459,7 +1455,7 @@ static const char *__pyx_filename;
 /* #### Code section: filename_table ### */
 
 static const char *__pyx_f[] = {
-  "calc\\\\simulate.pyx",
+  "calc/simulate.pyx",
   "<stringsource>",
 };
 /* #### Code section: utility_code_proto_before_types ### */
@@ -2871,7 +2867,7 @@ static const char __pyx_k_dtype_is_object[] = "dtype_is_object";
 static const char __pyx_k_pyx_PickleError[] = "__pyx_PickleError";
 static const char __pyx_k_setstate_cython[] = "__setstate_cython__";
 static const char __pyx_k_trade_proportion[] = "trade_proportion";
-static const char __pyx_k_calc_simulate_pyx[] = "calc\\simulate.pyx";
+static const char __pyx_k_calc_simulate_pyx[] = "calc/simulate.pyx";
 static const char __pyx_k_pyx_unpickle_Enum[] = "__pyx_unpickle_Enum";
 static const char __pyx_k_asyncio_coroutines[] = "asyncio.coroutines";
 static const char __pyx_k_cline_in_traceback[] = "cline_in_traceback";

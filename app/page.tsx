@@ -93,7 +93,7 @@ export default function Home() {
             className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}
           ></div>
         </div>
-        <ChartComponent data={graphData} style={{ width: "75%" }} />
+        <ChartComponent data={graphData} ema={emaData} style={{ width: "75%" }} />
         <div className={styles.mainBody}>
           <div className={styles.tickerInput}>
             <input
