@@ -1,8 +1,8 @@
-import { createChart, ColorType, Time, WhitespaceData, CandlestickData, LineData } from 'lightweight-charts';
+import { createChart, ColorType, Time, WhitespaceData, CandlestickData, LineData, UTCTimestamp } from 'lightweight-charts';
 import React, { CSSProperties, FC, useEffect, useRef } from 'react';
 
-export type GraphData = CandlestickData<Time>[];
-export type EmaData = LineData<Time>[];
+export type GraphData = CandlestickData<UTCTimestamp>[];
+export type EmaData = LineData<UTCTimestamp>[];
 
 export interface GraphProps {
   data: GraphData;
