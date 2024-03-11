@@ -64,21 +64,24 @@
     justify-content: center;
     margin-top: 2em;
     color: white;
+    
 }
 
 .inputContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1em 0 1em 0;
-    font-family: 'Inter' !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1em 0 1em 0;
+  font-family: 'Inter' !important;
+    
 }
 
 .inputContainer input[type="number"] {
   padding: 10px;
-  border: 1px solid #ccc;
+  border: none;
   border-radius: 4px;
+  background-color: black;
   font-size: 16px;
   font-family: 'Inter' !important;
 }
@@ -96,8 +99,10 @@
 }
 
 .inputContainer input[type="submit"]:hover {
-  filter: brightness(0.8);
+  filter: brightness(0.5);
 }
+
+
 
 .inputContainer label {
   display: block;
@@ -107,15 +112,20 @@
 }
 
 .interactionContainer {
-    border: 1px solid white;
-    padding: 1em;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2em;
-    font-family: 'Inter' !important;
+  /* border: 1px solid white; */
+  padding: 1em;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+  font-family: 'Inter' !important;
+  background: linear-gradient(0deg, 
+  rgba(64, 0, 255, 0.2), 
+  rgba(64, 0, 255, 0.4)
+  );
+  transition: all 0.5s ease;
 }
 
 .output {
@@ -123,25 +133,31 @@
 }
 
 .tickerInput {
-  border: 1px solid white;
-    padding: 1em;
-    border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2em;
-    font-family: 'Inter' !important;
+  /* border: 1px solid white; */
+  padding: 1em;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2em;
+  font-family: 'Inter' !important;
+  background: linear-gradient(0deg, 
+  rgba(64, 0, 255, 0.2), 
+  rgba(64, 0, 255, 0.4)
+  );
 }
 
 .tickerInput input, .tickerInput select, .tickerInput button {
   padding: 10px;
-  border: 1px solid #ccc;
+  /* border: 1px solid #ccc; */
+  border: none;
   border-radius: 4px;
   font-size: 16px;
   font-family: 'Inter' !important;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
+  background-color: black;
 }
 
 .tickerInput button {
@@ -153,7 +169,7 @@
   border-radius: 4px;
   font-size: 16px;
   margin-bottom: 1em;
-  font-family: 'Inter' !important;
+  font-family: 'Inter' !important;  
 }
 
 .tickerInput button:hover {
@@ -169,4 +185,19 @@
   align-items: center;
   margin-top: 2em;
   font-family: 'Inter' !important;
+  transition: all 0.5s ease;
+}
+
+.greenBox {
+  background: linear-gradient(0deg, 
+  rgba(9, 255, 0, 0.2), 
+  rgba(9, 255, 0, 0.4)
+  );
+}
+
+.redBox {
+  background: linear-gradient(0deg, 
+  rgba(255, 8, 8, 0.2), 
+  rgba(255, 8, 8, 0.4)
+  );
 }
