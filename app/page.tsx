@@ -26,6 +26,7 @@ export default function Home() {
   const [timespan, setTimespan] = useState("minute");
   const [from, setFrom] = useState("2023-01-03");
   const [to, setTo] = useState("2023-02-02");
+  const [showEMA, setShowEMA] = useState(false);
 
   useEffect(() => {
     updateGraph();
@@ -49,8 +50,8 @@ export default function Home() {
       .then((res) => {
         const json = res.data as RawData;
         const data = parseData(json);
-        const ema = getEma(data, 10);
         setGraphData(data);
+        const ema = getEma(data, 10);
         setEmaData(ema);
       })
       .catch((err) => {
@@ -93,7 +94,7 @@ export default function Home() {
             className={`${styles.loadingBar} ${loading ? styles.loading : ""}`}
           ></div>
         </div>
-        <ChartComponent data={graphData} ema={emaData} style={{ width: "75%" }} />
+        <ChartComponent data={graphData} ema={showEMA ? emaData : []} style={{ width: "75%" }} />
         <div className={styles.mainBody}>
           <div className={styles.tickerInput}>
             <input
@@ -121,6 +122,10 @@ export default function Home() {
             >
               Update
             </button>
+            <label>
+              <input type="checkbox" onChange={(ev) => setShowEMA(ev.target.checked)}/>
+              <span>Show EMA</span>
+            </label>
           </div>
 
           <div className={`${styles.interactionContainer} ${money > 0 

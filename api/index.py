@@ -39,7 +39,7 @@ def simulate_endpoint():
   except ValueError as error:
     return str(error), STATUS.BAD_REQUEST
   rulebook = create_rulebook(
-    [float32(0.1), float32(-0.1)],
+    [float32(0.2), float32(-0.2)],
     3,
     [
       # bear

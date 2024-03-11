@@ -64,7 +64,7 @@ export const ChartComponent: FC<GraphProps> = ({
 				chart.remove();
 			};
 		},
-		[data, backgroundColor]
+		[data, backgroundColor, ema]
 	);
 
 	return (
