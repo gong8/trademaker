@@ -178,11 +178,12 @@
 }
 
 .mainBody {
+  align-items: flex-start;
   display: flex;
   justify-content: space-around;
   width: 50%;
   flex-direction: row;
-  align-items: center;
+  /* align-items: center; */
   margin-top: 2em;
   font-family: 'Inter' !important;
   transition: all 0.5s ease;
@@ -203,6 +204,9 @@
 }
 
 .tradelog {
+  width: 100%;
+  padding: 0.5em;
+  border-radius: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -214,4 +218,15 @@
   rgba(64, 0, 255, 0.4)
   );
   transition: all 0.5s ease;
+}
+
+.tradeTitle {
+  margin: 0.5em;
+}
+
+.trade { 
+  background-color: black;
+  padding: 1em;
+  border-radius: 10px;
+  margin: 0.2em;
 }

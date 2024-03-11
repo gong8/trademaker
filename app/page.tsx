@@ -13,6 +13,18 @@ const api = axios.create({
 
 const denyPolygon = false;
 
+const timeFormatter = new Intl.DateTimeFormat("en-GB", { 
+  year: "numeric",
+  month: "numeric",
+  day: "numeric",
+  hour: "numeric",
+  minute: "numeric",
+  second: "numeric",
+  hour12: false,
+  // https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  timeZone: "Europe/London"
+});
+
 export default function Home() {
   const [graphData, setGraphData] = useState<GraphData>([]);
   const [emaData, setEmaData] = useState<EmaData>([]);
@@ -29,10 +41,10 @@ export default function Home() {
   const [to, setTo] = useState("2024-03-07");
   const [showEMA, setShowEMA] = useState(false);
   interface Trade {
-    action: "buy" | "sell";
+    action: "BUY" | "SELL";
     price: number;
     amount: number;
-    time: Time;
+    time: UTCTimestamp;
   }
   const [trades, setTrades] = useState<Trade[]>([]);
 
@@ -86,6 +98,7 @@ export default function Home() {
         },
       })
       .then((res) => {
+        setTrades([]);
         const parsedData = res.data as [number, number][];
         for (let i = 0; i < parsedData.length; i++) {
           const [investedUnits, availableMoney] = parsedData[i];
@@ -97,14 +110,14 @@ export default function Home() {
               const time = graphData[i].time;
               if (unitDifference > 0) {
                 setTrades((prev) => [...prev, {
-                  action: "buy",
+                  action: "BUY",
                   price,
                   amount: unitDifference,
                   time,
                 }])
               } else if (unitDifference < 0) {
                 setTrades((prev) => [...prev, {
-                  action: "sell",
+                  action: "SELL",
                   price,
                   amount: Math.abs(unitDifference),
                   time,
@@ -232,18 +245,11 @@ export default function Home() {
             </div>
           </div>
           <div className={styles.tradelog}>
-            TRADES:
+          <h2 className={styles.tradeTitle}>trade log</h2>
           {trades.map((trade) => (
-            <div>
-              <p>Time: {Date.parse(String(trade.time))}</p>
-              <p>Action: {trade.action}</p>
-              <p>Stock: {(trade.amount).toFixed(2)}</p>
-              <p>Price: {(trade.price).toFixed(2)}</p>
-              <p>Change: {trade.action == 'buy' ? 
-                `+${(trade.price * trade.amount).toFixed(2)}` : 
-                `-${(trade.price * trade.amount).toFixed(2)}`
-              }</p>
-              <br/>
+            <div className={styles.trade}>
+              <p>{timeFormatter.format(new Date(trade.time * 1000))}</p>
+              <p>{trade.action} {(trade.amount).toFixed(2)} @ £{(trade.price).toFixed(2)}</p>
             </div>
           ))}
           </div>
