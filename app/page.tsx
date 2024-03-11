@@ -27,6 +27,13 @@ export default function Home() {
   const [from, setFrom] = useState("2023-01-03");
   const [to, setTo] = useState("2023-02-02");
   const [showEMA, setShowEMA] = useState(false);
+  interface Trade {
+    action: "buy" | "sell";
+    price: number;
+    amount: number;
+    time: string;
+  }
+  const [trades, setTrades] = useState<Trade[]>([]);
 
   useEffect(() => {
     updateGraph();
@@ -76,8 +83,80 @@ export default function Home() {
         },
       })
       .then((res) => {
-        // ask boris to check this part
         const money = +res.data;
+        setMoney(money);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  }
+
+  function simulate_detail() {
+    api
+      .get("/simulate_detail", {
+        params: {
+          initialStock,
+          initialWallet,
+          ticker,
+          multiplier,
+          timespan,
+          from,
+          to,
+        },
+      })
+      .then((res) => {
+
+        // ask boris to check this part
+        const parsedData = res.data;
+        //  - List[Tuple[float32, float32]]
+        // - A list of tuples of `invested_units` and `available_money` after each candlestick.
+        for (let i = 0; i < parsedData.length; i++) {
+          const [investedUnits, availableMoney] = parsedData[i];
+          if (i !== 0) {
+            const prevInvestedUnits = parsedData[i - 1][0];
+            if (investedUnits !== prevInvestedUnits) {
+              const unitDifference = investedUnits - prevInvestedUnits;
+              // if positive, then we bought
+              // if negative, then we sold
+              const LULLA = 0;
+              const price = LULLA;
+              const LULLA2 = "2023-01-03";
+              const time = LULLA2;
+          
+              if (unitDifference > 0) {
+                setTrades((prev) => [...prev, {
+                  action: "buy",
+                  // need to get price
+                  price,
+                  amount: unitDifference,
+                  // need to get timestamp
+                  time,
+                }])
+              } else if (unitDifference < 0) {
+                setTrades((prev) => [...prev, {
+                  action: "sell",
+                  // need to get price
+                  price,
+                  amount: Math.abs(unitDifference),
+                  // need to get timestamp
+                  time,
+                }])
+              } else {
+                throw new Error("trade with zero value processed");
+              }
+            }
+          }
+        }
+        // to get initial value, get initialStock * the first candlestick open + wallet
+        const INITIAL_PRICE = 0;
+        const FINAL_PRICE = 0;
+        const initialTotal = initialWallet + initialStock * INITIAL_PRICE;
+        const finalWallet = parsedData[parsedData.length - 1][1];
+        const finalTotal = finalWallet + parsedData[parsedData.length - 1][0] * FINAL_PRICE;
+        const money = finalTotal - initialTotal;
+        setMoney(money);
+
+
         setMoney(money);
       })
       .catch((err) => {
@@ -128,7 +207,8 @@ export default function Home() {
             </label>
           </div>
 
-          <div className={`${styles.interactionContainer} ${money > 0 
+          <div className={`${styles.interactionContainer} ${
+            money > 0 
             ? styles.greenBox 
             : money < 0 
             ? styles.redBox 
@@ -169,6 +249,20 @@ export default function Home() {
               <p>Money difference: {money >= 0 ? "+£" + money.toFixed(2) : "-£" + (Math.abs(money)).toFixed(2)}</p>
               <p>Total money: £{(initialStock + initialWallet + money).toFixed(2)}</p>
             </div>
+          </div>
+          <div className={styles.tradelog}>
+          {trades.map((trade) => (
+            <div>
+              <p>Time: {trade.time}</p>
+              <p>Action: {trade.action}</p>
+              <p>Stock: {trade.amount}</p>
+              <p>Price: {trade.price}</p>
+              <p>Change: {trade.action == 'buy' ? 
+                `+${trade.price * trade.amount}` : 
+                `-${trade.price * trade.amount}`
+              }</p>
+            </div>
+          ))}
           </div>
         </div>
       </div>
