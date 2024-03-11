@@ -3,8 +3,8 @@ from numpy import float32
 from requests import HTTPError
 from status import STATUS
 from polygon import get_data
-from helper import get_param, create_rulebook, Candle, Attribute, Bound, parse_date, parse_candlesticks
-from calc import simulate
+from helper import get_param, standard_rulebook, parse_date, parse_candlesticks
+from calc import simulate_detail
 
 app = Flask(__name__)
 
@@ -24,7 +24,7 @@ def get_data_endpoint():
   except HTTPError as error:
     return str(error), STATUS.POLYGON_ERROR
   return data, STATUS.OK
-
+  
 @app.route('/api/simulate', methods=['GET'])
 def simulate_endpoint():
   args = request.args
@@ -38,68 +38,15 @@ def simulate_endpoint():
     to_date = parse_date(get_param(args, "to", "To Date", str))
   except ValueError as error:
     return str(error), STATUS.BAD_REQUEST
-  rulebook = create_rulebook(
-    [float32(0.2), float32(-0.2)],
-    3,
-    [
-      # bear
-      (0, (Candle.FIRST, Attribute.CLOSE, Bound.UPPER), (Candle.FIRST, Attribute.OPEN), float32(1)),
-      (0, (Candle.FIRST, Attribute.CLOSE, Bound.UPPER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-      
-      # bear
-      (0, (Candle.SECOND, Attribute.CLOSE, Bound.UPPER), (Candle.SECOND, Attribute.OPEN), float32(1)),
-      (0, (Candle.SECOND, Attribute.CLOSE, Bound.UPPER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-      
-      # bull
-      (0, (Candle.THIRD, Attribute.CLOSE, Bound.LOWER), (Candle.THIRD, Attribute.OPEN), float32(1)),
-      (0, (Candle.THIRD, Attribute.CLOSE, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-
-      # third close < ema
-      (0, (Candle.THIRD, Attribute.CLOSE, Bound.UPPER), (Candle.EMA, Attribute.EMA), float32(1)),
-
-      # third above first
-      (0, (Candle.FIRST, Attribute.HIGH, Bound.UPPER), (Candle.THIRD, Attribute.CLOSE), float32(1)),      
-      (0, (Candle.FIRST, Attribute.HIGH, Bound.UPPER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-
-      # third above second
-      (0, (Candle.SECOND, Attribute.HIGH, Bound.UPPER), (Candle.THIRD, Attribute.CLOSE), float32(1)),
-      (0, (Candle.SECOND, Attribute.HIGH, Bound.UPPER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-
-      # -----------------------------
-
-      # bull
-      (1, (Candle.FIRST, Attribute.CLOSE, Bound.LOWER), (Candle.FIRST, Attribute.OPEN), float32(1)),
-      (1, (Candle.FIRST, Attribute.CLOSE, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-      
-      # bull
-      (1, (Candle.SECOND, Attribute.CLOSE, Bound.LOWER), (Candle.SECOND, Attribute.OPEN), float32(1)),
-      (1, (Candle.SECOND, Attribute.CLOSE, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-      
-      # bear
-      (1, (Candle.THIRD, Attribute.CLOSE, Bound.UPPER), (Candle.THIRD, Attribute.OPEN), float32(1)),
-      (1, (Candle.THIRD, Attribute.CLOSE, Bound.UPPER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-
-      # third close < ema
-      (1, (Candle.THIRD, Attribute.CLOSE, Bound.LOWER), (Candle.EMA, Attribute.EMA), float32(1)),
-
-      # third above first
-      (1, (Candle.FIRST, Attribute.HIGH, Bound.LOWER), (Candle.THIRD, Attribute.CLOSE), float32(1)),      
-      (1, (Candle.FIRST, Attribute.HIGH, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-
-      # third above second
-      (1, (Candle.SECOND, Attribute.HIGH, Bound.LOWER), (Candle.THIRD, Attribute.CLOSE), float32(1)),
-      (1, (Candle.SECOND, Attribute.HIGH, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
-    ]
-  )
   try:
     str_data = get_data(ticker, multiplier, timespan, from_date, to_date)
   except HTTPError as error:
     return str(error), STATUS.POLYGON_ERROR
   candlesticks = parse_candlesticks(str_data)
   try:
-    result = simulate(
+    result = simulate_detail(
       candlesticks,
-      rulebook,
+      standard_rulebook,
       initial_stock / candlesticks[0],
       initial_wallet,
       3,
@@ -108,9 +55,7 @@ def simulate_endpoint():
     )
   except RuntimeError as error:
     return str(error), STATUS.SIMULATOR_ERROR
-  return str(result), STATUS.OK
-  
-
+  return str(list(map(list, result))), STATUS.OK
 
 if __name__ == '__main__':
   app.run(port = 5000)
