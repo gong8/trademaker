@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from datetime import datetime
 from requests import get
-from utils import str_date
+from helper import str_date
 from os import environ
 
 load_dotenv()

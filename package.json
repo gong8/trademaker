@@ -7,7 +7,7 @@
     "dev-next": "next dev",
     "dev": "concurrently \"npm run dev-api\" \"npm run dev-next\"",
 
-    "build-api": "python3 -m pip install -r requirements.txt && cd ./api && python3 setup.py build_ext --inplace && cd ../",
+    "build-api": "python -m pip install -r requirements.txt && cd ./api && python setup.py build_ext --inplace && cd ../",
     "build-next": "next build",
     "build": "npm run build-api && npm run build-next",
 
