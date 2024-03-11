@@ -1,6 +1,6 @@
 from numpy import float32
 from helper import create_rulebook, Candle, Attribute, Bound, parse_date, parse_candlesticks
-from calc import simulate
+from calc import simulate_detail
 from polygon import get_data
 
 if __name__ == "__main__":
@@ -60,7 +60,7 @@ if __name__ == "__main__":
   str_data = get_data("AAPL", 1, "minute", parse_date("2023-01-03"), parse_date("2023-02-02"))
   candlesticks = parse_candlesticks(str_data)
   # we require starting stocks, starting money
-  result = simulate(
+  result = simulate_detail(
     candlesticks,
     rulebook,
     float32(100),
@@ -69,5 +69,4 @@ if __name__ == "__main__":
     2,
     10
   )
-  print(candlesticks[-3] - candlesticks[0])
   print(result)
