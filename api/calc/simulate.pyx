@@ -70,7 +70,7 @@ def simulate(
     if trade_proportion > 0:
       # buy stock
       trade_proportion = min(trade_proportion, 1.0)
-      invested_units += trade_proportion * available_money / candlesticks[i * 4]
+      invested_units += trade_proportion * available_money / candlesticks[i * 4 + 1]
       available_money *= 1 - trade_proportion
     else:
       # sell stock
@@ -154,7 +154,7 @@ def simulate_detail(
     if trade_proportion > 0:
       # buy stock
       trade_proportion = min(trade_proportion, 1.0)
-      invested_units += trade_proportion * available_money / candlesticks[i * 4]
+      invested_units += trade_proportion * available_money / candlesticks[i * 4 + 1]
       available_money *= 1 - trade_proportion
     else:
       # sell stock
