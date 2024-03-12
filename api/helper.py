@@ -210,7 +210,7 @@ def create_rulebook(
   return rulebook
 
 # default rulebook
-standard_rulebook = rulebook = create_rulebook(
+standard_rulebook = create_rulebook(
     [float32(0.2), float32(-0.2)],
     3,
     [
@@ -263,3 +263,14 @@ standard_rulebook = rulebook = create_rulebook(
       (1, (Candle.SECOND, Attribute.HIGH, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
     ]
   )
+
+ewan_rulebook = create_rulebook(
+  [float32(0.1), float32(-1.0)],
+  1,
+  [
+    (0, (Candle.FIRST, Attribute.CLOSE, Bound.LOWER), (Candle.FIRST, Attribute.OPEN), float32(1)),
+    (0, (Candle.FIRST, Attribute.CLOSE, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
+    (1, (Candle.FIRST, Attribute.OPEN, Bound.LOWER), (Candle.FIRST, Attribute.CLOSE), float32(1)),
+    (1, (Candle.FIRST, Attribute.OPEN, Bound.LOWER), (Candle.CONSTANT, Attribute.CONSTANT), float32(0)),
+  ]
+)

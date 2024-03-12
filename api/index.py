@@ -3,7 +3,7 @@ from numpy import float32
 from requests import HTTPError
 from status import STATUS
 from polygon import get_data
-from helper import get_param, standard_rulebook, parse_date, parse_candlesticks
+from helper import get_param, standard_rulebook, parse_date, parse_candlesticks, ewan_rulebook
 from calc import simulate_detail
 
 app = Flask(__name__)
@@ -46,10 +46,10 @@ def simulate_endpoint():
   try:
     result = simulate_detail(
       candlesticks,
-      standard_rulebook,
+      ewan_rulebook,
       initial_stock / candlesticks[0],
       initial_wallet,
-      3,
+      1,
       2,
       10
     )

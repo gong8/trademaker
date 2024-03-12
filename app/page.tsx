@@ -207,6 +207,7 @@ export default function Home() {
             : ""}`
             }>
             <form
+              id="simulateForm"
               className={styles.inputContainer}
               onSubmit={(event) => {
                 event.preventDefault();

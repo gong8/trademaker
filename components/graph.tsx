@@ -20,6 +20,7 @@ export interface GraphProps {
 export const ChartComponent: FC<GraphProps> = ({
   data,
 	ema,
+  
   colors: {
     backgroundColor = 'black',
 		textColor = 'white'
@@ -43,9 +44,13 @@ export const ChartComponent: FC<GraphProps> = ({
 				layout: {
 					background: { type: ColorType.Solid, color: backgroundColor },
 					textColor,
+          
 				},
 				width: div.clientWidth,
 				height: 300,
+        timeScale: {
+          timeVisible: true,
+        }
 			});
 			chart.timeScale().fitContent();
 
